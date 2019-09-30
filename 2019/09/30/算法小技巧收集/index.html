@@ -96,20 +96,24 @@
 
 
 
-  <meta property="og:type" content="website">
+  <meta name="description" content="前言：目前要求掌握度 0 - 3级， 0级最重要； 位运算123掌握度：01. (item &amp;gt;&amp;gt; index) &amp;amp; 1 == 1直接检验item 的 第 index 位置是否是1； 123456789101112131415161718掌握度：32. 根据二进制数组 求出 数字// 10 的二进制 1010int[] bits = new int[32];bits[1] = 1">
+<meta property="og:type" content="article">
 <meta property="og:title" content="SummerRainy">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/09/30/算法小技巧收集/index.html">
 <meta property="og:site_name" content="SummerRainy">
+<meta property="og:description" content="前言：目前要求掌握度 0 - 3级， 0级最重要； 位运算123掌握度：01. (item &amp;gt;&amp;gt; index) &amp;amp; 1 == 1直接检验item 的 第 index 位置是否是1； 123456789101112131415161718掌握度：32. 根据二进制数组 求出 数字// 10 的二进制 1010int[] bits = new int[32];bits[1] = 1">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-09-30T08:46:19.267Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SummerRainy">
+<meta name="twitter:description" content="前言：目前要求掌握度 0 - 3级， 0级最重要； 位运算123掌握度：01. (item &amp;gt;&amp;gt; index) &amp;amp; 1 == 1直接检验item 的 第 index 位置是否是1； 123456789101112131415161718掌握度：32. 根据二进制数组 求出 数字// 10 的二进制 1010int[] bits = new int[32];bits[1] = 1">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/09/30/算法小技巧收集/"/>
 
 
 
@@ -119,7 +123,7 @@
   };
 </script>
 
-  <title>SummerRainy</title>
+  <title> | SummerRainy</title>
   
 
 
@@ -167,8 +171,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -206,7 +209,7 @@
         
         
           
-          <li class="menu-item menu-item-home menu-item-active">
+          <li class="menu-item menu-item-home">
 
     
     
@@ -268,9 +271,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -303,9 +306,7 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/09/30/算法小技巧收集/" class="post-title-link" itemprop="url">Untitled</a>
+
               
             
           </h1>
@@ -369,14 +370,10 @@
       
 
       
-        
-          
-            <p>前言：<br>目前要求掌握度 0 - 3级， 0级最重要；</p>
+        <p>前言：<br>目前要求掌握度 0 - 3级， 0级最重要；</p>
 <h2 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">掌握度：<span class="number">0</span></span><br><span class="line"><span class="number">1</span>. (item &gt;&gt; index) &amp; <span class="number">1</span> == <span class="number">1</span></span><br><span class="line">直接检验item 的 第 index 位置是否是<span class="number">1</span>；</span><br></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">掌握度：<span class="number">3</span></span><br><span class="line"><span class="number">2</span>. 根据二进制数组 求出 数字</span><br><span class="line"></span><br><span class="line"><span class="comment">// 10 的二进制 1010</span></span><br><span class="line"><span class="keyword">int</span>[] bits = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">32</span>];</span><br><span class="line">bits[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">bits[<span class="number">3</span>] = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">32</span>; i++)&#123;</span><br><span class="line">    <span class="keyword">if</span>(bits[i] != <span class="number">0</span>)&#123;</span><br><span class="line">        result = result | (<span class="number">1</span> &lt;&lt; i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">最终result = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">公式：</span><br><span class="line">result = result | (<span class="number">1</span> &lt;&lt; i);</span><br></pre></td></tr></table></figure>
 
-          
-        
       
     </div>
 
@@ -399,12 +396,12 @@
       
 
       
+      
+      
 
       
 
       
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -414,14 +411,15 @@
   </article>
 
 
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -442,8 +440,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -487,6 +494,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#位运算"><span class="nav-number">1.</span> <span class="nav-text">位运算</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -614,6 +638,10 @@
 
 
   
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
 
   
 
@@ -624,6 +652,8 @@
 
   
 
+
+  
 
 
   
