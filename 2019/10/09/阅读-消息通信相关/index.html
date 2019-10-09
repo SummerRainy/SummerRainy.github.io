@@ -99,14 +99,14 @@
   <meta name="description" content="基本信息阅读书籍：《Android 设计与实现 卷1》 第四部分 消息通信篇 所得1：Java 层的MessageQueue 与 Native 层的 NatveMessageQueue 专门有方法将它们关联，确保Java层可以访问到Native层。 Java层 与 Native层 均有 Looper、MessageQueue 对象，通过Native 方法关联了 双方MessageQueue。 Ja">
 <meta name="keywords" content="阅读">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[阅读] 消息通信相关">
+<meta property="og:title" content="消息通信相关">
 <meta property="og:url" content="http://yoursite.com/2019/10/09/阅读-消息通信相关/index.html">
 <meta property="og:site_name" content="SummerRainy">
 <meta property="og:description" content="基本信息阅读书籍：《Android 设计与实现 卷1》 第四部分 消息通信篇 所得1：Java 层的MessageQueue 与 Native 层的 NatveMessageQueue 专门有方法将它们关联，确保Java层可以访问到Native层。 Java层 与 Native层 均有 Looper、MessageQueue 对象，通过Native 方法关联了 双方MessageQueue。 Ja">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-09T06:33:08.147Z">
+<meta property="og:updated_time" content="2019-10-09T06:35:52.424Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[阅读] 消息通信相关">
+<meta name="twitter:title" content="消息通信相关">
 <meta name="twitter:description" content="基本信息阅读书籍：《Android 设计与实现 卷1》 第四部分 消息通信篇 所得1：Java 层的MessageQueue 与 Native 层的 NatveMessageQueue 专门有方法将它们关联，确保Java层可以访问到Native层。 Java层 与 Native层 均有 Looper、MessageQueue 对象，通过Native 方法关联了 双方MessageQueue。 Ja">
 
 
@@ -124,7 +124,7 @@
   };
 </script>
 
-  <title>[阅读] 消息通信相关 | SummerRainy</title>
+  <title>消息通信相关 | SummerRainy</title>
   
 
 
@@ -306,7 +306,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">[阅读] 消息通信相关
+          <h1 class="post-title" itemprop="name headline">消息通信相关
 
               
             
@@ -332,7 +332,7 @@
                 
               
 
-              <time title="Created: 2019-10-09 14:29:07 / Modified: 14:33:08" itemprop="dateCreated datePublished" datetime="2019-10-09T14:29:07+08:00">2019-10-09</time>
+              <time title="Created: 2019-10-09 14:29:07 / Modified: 14:35:52" itemprop="dateCreated datePublished" datetime="2019-10-09T14:29:07+08:00">2019-10-09</time>
             
 
             
@@ -389,7 +389,7 @@
 </ol>
 <p>消息加入队列后，处于block状态，需要等到nativeWake方法唤醒 looper 那边；</p>
 <p><strong>唤醒：</strong></p>
-<p>第一步：JNI 层Looper对象创建时候，会创建一个 管道写端，写入’W’;</p>
+<p>第一步：JNI 层Looper对象创建时候，会创建一个 管道写端，写入<code>&#39;W&#39;</code>;</p>
 <p>第二步：</p>
 <ul>
 <li><code>Looper.loop()</code> 中通过 <code>queue.next</code> 获取下一个信息;</li>
@@ -397,8 +397,8 @@
 </ul>
 <p>所以 MessageQueue在必要使用通过管道写入 一个值，Looper 这边 监听管道写入 得到唤醒。</p>
 <h3 id="所得5-关于空闲状态消息处理"><a href="#所得5-关于空闲状态消息处理" class="headerlink" title="所得5 关于空闲状态消息处理"></a>所得5 关于空闲状态消息处理</h3><p><strong>空闲状态：</strong><br>消息队列为空； 队列头部处理时间未到；</p>
-<p>MessageQueue 有一个成员变量，存储IdleHandler， 提供了我们可以add、remove IdleHandler方法，这个handler 用来空闲期处理空闲任务；</p>
-<p>next() 中会执行<code>nativePollOnce()</code> 根据它返回的状态决定要不要执行空闲任务。如果判断执行，我们添加过 IdleHandler 就执行 <code>IdleHandler.queueHandler()</code>;<br>IdleHandler 是一个接口，需实现<code>queueHandler()</code></p>
+<p>MessageQueue 有一个成员变量，存储IdleHandler， 提供了我们可以<code>add、remove IdleHandler</code>方法，这个handler 用来空闲期处理空闲任务；</p>
+<p><code>next()</code>中会执行<code>nativePollOnce()</code> 根据它返回的状态决定要不要执行空闲任务。如果判断执行，我们添加过 IdleHandler 就执行 <code>IdleHandler.queueHandler()</code>;<br>IdleHandler 是一个接口，需实现<code>queueHandler()</code></p>
 <p><strong>作用：</strong></p>
 <ul>
 <li>GcIdle中空闲时内存垃圾回收</li>
@@ -449,6 +449,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/09/刷题-剑指/" rel="prev" title="刷题-剑指">
+                刷题-剑指 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -518,7 +522,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-count">3</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
