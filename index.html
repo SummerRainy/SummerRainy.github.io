@@ -330,7 +330,7 @@
                 
               
 
-              <time title="Created: 2019-10-09 14:29:07 / Modified: 14:30:20" itemprop="dateCreated datePublished" datetime="2019-10-09T14:29:07+08:00">2019-10-09</time>
+              <time title="Created: 2019-10-09 14:29:07 / Modified: 14:33:08" itemprop="dateCreated datePublished" datetime="2019-10-09T14:29:07+08:00">2019-10-09</time>
             
 
             
@@ -371,7 +371,40 @@
       
         
           
-            
+            <h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><p>阅读书籍：《Android 设计与实现 卷1》 第四部分 消息通信篇</p>
+<h3 id="所得1："><a href="#所得1：" class="headerlink" title="所得1："></a>所得1：</h3><p>Java 层的<code>MessageQueue</code> 与 Native 层的 <code>NatveMessageQueue</code> 专门有方法将它们关联，确保Java层可以访问到Native层。</p>
+<p>Java层 与 Native层 均有 <code>Looper、MessageQueue</code> 对象，通过Native 方法关联了 双方<code>MessageQueue</code>。</p>
+<p>Java 层的<code>MessagQueue</code> 成员变量保存 Native 层的 <code>NatveMessageQueue</code>, 访问时候 通过JNI访问。</p>
+<h3 id="所得2："><a href="#所得2：" class="headerlink" title="所得2："></a>所得2：</h3><p>Handler 使用 成员变量<code>mMessenger</code> 用于跨进程发送（待扩展）</p>
+<h3 id="所得3："><a href="#所得3：" class="headerlink" title="所得3："></a>所得3：</h3><p>Message 本身 存在next属性指向下一条，形成链表；</p>
+<p><strong>消息池</strong></p>
+<p>Message中 存在消息池，消息池<code>Message sPool</code> 也是一个Message对象，obtain方法就是取出头部消息；</p>
+<p>recycle方法 将消息加入消息池头部，并清除这个消息的数据记录；</p>
+<h3 id="所得4："><a href="#所得4：" class="headerlink" title="所得4："></a>所得4：</h3><p>消息在消息队列中 按照执行时间排列，每个消息加入队列就会放到正确位置；</p>
+<ol>
+<li>队列 == null, 放到头部；</li>
+<li>when = 0，放头部，需立即处理；</li>
+<li>when &lt; 头部.when, 放头部；</li>
+<li>新消息 晚于头部消息，遍历队列插入合适位置；</li>
+</ol>
+<p>消息加入队列后，处于block状态，需要等到nativeWake方法唤醒 looper 那边；</p>
+<p><strong>唤醒：</strong></p>
+<p>第一步：JNI 层Looper对象创建时候，会创建一个 管道写端，写入’W’;</p>
+<p>第二步：</p>
+<ul>
+<li><code>Looper.loop()</code> 中通过 <code>queue.next</code> 获取下一个信息;</li>
+<li><code>MessageQueue.next()</code> 中，通过<code>nativePollOnce()</code>监控管道事件做不同处理；</li>
+</ul>
+<p>所以 MessageQueue在必要使用通过管道写入 一个值，Looper 这边 监听管道写入 得到唤醒。</p>
+<h3 id="所得5-关于空闲状态消息处理"><a href="#所得5-关于空闲状态消息处理" class="headerlink" title="所得5 关于空闲状态消息处理"></a>所得5 关于空闲状态消息处理</h3><p><strong>空闲状态：</strong><br>消息队列为空； 队列头部处理时间未到；</p>
+<p>MessageQueue 有一个成员变量，存储IdleHandler， 提供了我们可以add、remove IdleHandler方法，这个handler 用来空闲期处理空闲任务；</p>
+<p>next() 中会执行<code>nativePollOnce()</code> 根据它返回的状态决定要不要执行空闲任务。如果判断执行，我们添加过 IdleHandler 就执行 <code>IdleHandler.queueHandler()</code>;<br>IdleHandler 是一个接口，需实现<code>queueHandler()</code></p>
+<p><strong>作用：</strong></p>
+<ul>
+<li>GcIdle中空闲时内存垃圾回收</li>
+<li>Home启动后，发送<code>BOOT_COMPLETED</code>广播,后面章节分析；</li>
+</ul>
+
           
         
       
