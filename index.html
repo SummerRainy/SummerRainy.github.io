@@ -285,6 +285,169 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/09/刷题-剑指2/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SummerRainy"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SummerRainy"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/10/09/刷题-剑指2/" class="post-title-link" itemprop="url">刷题-剑指2</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-10-09 16:03:25" itemprop="dateCreated datePublished" datetime="2019-10-09T16:03:25+08:00">2019-10-09</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-10-10 15:10:09" itemprop="dateModified" datetime="2019-10-10T15:10:09+08:00">2019-10-10</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目-左旋转字符串"><a href="#题目-左旋转字符串" class="headerlink" title="题目 左旋转字符串"></a>题目 左旋转字符串</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">汇编语言中有一种移位指令叫做循环左移（ROL），现在有个简单的任务，就是用字符串模拟这个指令的运算结果。</span><br><span class="line"></span><br><span class="line">对于一个给定的字符序列S，请你把其循环左移K位后的序列输出。</span><br><span class="line"></span><br><span class="line">例如，字符序列S=”abcXYZdef”,要求输出循环左移3位后的结果，即“XYZdefabc”。是不是很简单？OK，搞定它！</span><br></pre></td></tr></table></figure>
+<h3 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">LeftRotateString</span><span class="params">(String str,<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (str.length() &lt;= <span class="number">1</span> || n &lt;= <span class="number">0</span> </span><br><span class="line">            || n % str.length() == <span class="number">0</span>) <span class="keyword">return</span> str;</span><br><span class="line">        </span><br><span class="line">        n = n % str.length();</span><br><span class="line">        String result = str.substring(n) + str.substring(<span class="number">0</span>, n);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">小改进：</span><br><span class="line">StringBuilder str1 = <span class="keyword">new</span> StringBuilder(str.substring(n));</span><br><span class="line">String str2 = str.substring(<span class="number">0</span>, n);</span><br><span class="line">str1.append(str2);</span><br><span class="line"><span class="keyword">return</span> str1.toString();</span><br><span class="line"></span><br><span class="line">个人感觉 str2 并不需要使用 StringBuilder</span><br><span class="line"><span class="number">1</span>. 首先StringBuilder 本身就是用来拼接 String的；</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> StringBuilder <span class="title">append</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> append(String.valueOf(obj));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> StringBuilder <span class="title">append</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.append(str);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">str2使用StringBuilder 还多一步；</span><br></pre></td></tr></table></figure>
+<h3 id="解答2"><a href="#解答2" class="headerlink" title="解答2"></a>解答2</h3><p>可能不会让使用系统内置方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">LeftRotateString</span><span class="params">(String str,<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (str.length() &lt;= <span class="number">1</span> || n &lt;= <span class="number">0</span> || n % str.length() == <span class="number">0</span>) <span class="keyword">return</span> str;</span><br><span class="line">        </span><br><span class="line">        n = n % str.length();</span><br><span class="line">        <span class="keyword">char</span>[] strs = str.toCharArray();</span><br><span class="line">        reverse(strs, <span class="number">0</span>, strs.length - <span class="number">1</span>);</span><br><span class="line">        reverse(strs, <span class="number">0</span>, strs.length - <span class="number">1</span> - n);</span><br><span class="line">        reverse(strs, strs.length - n, strs.length - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> String(strs);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">reverse</span><span class="params">(<span class="keyword">char</span>[] strs, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">char</span> temp;</span><br><span class="line">        <span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line">            temp = strs[left];</span><br><span class="line">            strs[left] = strs[right];</span><br><span class="line">            strs[right] = temp;</span><br><span class="line">            left++;</span><br><span class="line">            right--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">思路:</span><br><span class="line">如 S = <span class="string">"abcXYZdef"</span>, n = <span class="number">3</span>;</span><br><span class="line"><span class="number">1</span>. 整体翻转一次, fedZYXcba;</span><br><span class="line"><span class="number">2</span>. (<span class="number">0</span>, length - <span class="number">1</span> - n) 翻转一次，XYZdefcba;</span><br><span class="line"><span class="number">3</span>. (strs.length - n, strs.length - <span class="number">1</span>) 翻转一次就是需求结果， XYZdefabc;</span><br></pre></td></tr></table></figure>
+<h2 id="题目-翻转单词顺序"><a href="#题目-翻转单词顺序" class="headerlink" title="题目 翻转单词顺序"></a>题目 翻转单词顺序</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">题目描述</span><br><span class="line">牛客最近来了一个新员工Fish，每天早晨总是会拿着一本英文杂志，写些句子在本子上。同事Cat对Fish写的内容颇感兴趣，有一天他向Fish借来翻看，但却读不懂它的意思。例如，“student. a am I”。后来才意识到，这家伙原来把句子单词的顺序翻转了，正确的句子应该是“I am a student.”。Cat对一一的翻转这些单词顺序可不在行，你能帮助他么？</span><br></pre></td></tr></table></figure>
+<h3 id="解答-1"><a href="#解答-1" class="headerlink" title="解答"></a>解答</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.StringBuilder;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">ReverseSentence</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (str == <span class="keyword">null</span> || str.length() &lt;= <span class="number">1</span> || str.trim().length() == <span class="number">0</span>) <span class="keyword">return</span> str;</span><br><span class="line">        </span><br><span class="line">        String[] strs = str.split(<span class="string">" "</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; strs.length / <span class="number">2</span>; i++) &#123;</span><br><span class="line">            String temp = strs[i];</span><br><span class="line">            strs[i] = strs[strs.length - <span class="number">1</span> - i];</span><br><span class="line">            strs[strs.length - <span class="number">1</span> - i] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        StringBuilder result = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">for</span> (String item : strs) &#123;</span><br><span class="line">            <span class="keyword">if</span> (result.length() != <span class="number">0</span>) result.append(<span class="string">" "</span>);</span><br><span class="line">            result.append(item);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> result.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">思路：</span><br><span class="line"><span class="number">1</span>. “student. a am I” 按照 空格拆分；</span><br><span class="line"><span class="number">2</span>. 逆序strs, 使用StringBuilder 拆分</span><br><span class="line"></span><br><span class="line">优化一下：</span><br><span class="line">String[] strs = str.split(<span class="string">" "</span>);</span><br><span class="line">        </span><br><span class="line">StringBuilder result = <span class="keyword">new</span> StringBuilder();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = strs.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">    <span class="keyword">if</span> (result.length() != <span class="number">0</span>) result.append(<span class="string">" "</span>);</span><br><span class="line">    result.append(strs[i]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">实际上我们不需要逆序，只要拼接时候倒着拼接就行；</span><br></pre></td></tr></table></figure>
+<h3 id="解答2-1"><a href="#解答2-1" class="headerlink" title="解答2"></a>解答2</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">可能不让使用split, 别人的思路。</span><br><span class="line"><span class="number">1</span>. 翻转整个句子；</span><br><span class="line"><span class="number">2</span>. 翻转句子中每个单词；</span><br></pre></td></tr></table></figure>
+<h2 id="题目-扑克牌顺子"><a href="#题目-扑克牌顺子" class="headerlink" title="题目 扑克牌顺子"></a>题目 扑克牌顺子</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">题目描述</span><br><span class="line">LL今天心情特别好,因为他去买了一副扑克牌,发现里面居然有<span class="number">2</span>个大王,<span class="number">2</span>个小王(一副牌原本是<span class="number">54</span>张^_^)...他随机从中抽出了<span class="number">5</span>张牌,想测测自己的手气,看看能不能抽到顺子,如果抽到的话,他决定去买体育彩票,嘿嘿！！“红心A,黑桃<span class="number">3</span>,小王,大王,方片<span class="number">5</span>”,“Oh My God!”不是顺子.....LL不高兴了,他想了想,决定大\小 王可以看成任何数字,并且A看作<span class="number">1</span>,J为<span class="number">11</span>,Q为<span class="number">12</span>,K为<span class="number">13</span>。上面的<span class="number">5</span>张牌就可以变成“<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>”(大小王分别看作<span class="number">2</span>和<span class="number">4</span>),“So Lucky!”。LL决定去买体育彩票啦。 现在,要求你使用这幅牌模拟上面的过程,然后告诉我们LL的运气如何， 如果牌能组成顺子就输出<span class="keyword">true</span>，否则就输出<span class="keyword">false</span>。为了方便起见,你可以认为大小王是<span class="number">0</span>。</span><br></pre></td></tr></table></figure>
+<h3 id="解答-2"><a href="#解答-2" class="headerlink" title="解答"></a>解答</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">开始没太看懂题目，大体意思是 给<span class="number">5</span>张牌，判断是否可以组成顺子，<span class="number">0</span> 可以补任何数</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isContinuous</span><span class="params">(<span class="keyword">int</span> [] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (nums.length &lt; <span class="number">5</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> min = <span class="number">13</span>, max = <span class="number">1</span>; <span class="comment">// 点1</span></span><br><span class="line">        <span class="keyword">int</span>[] counts = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">14</span>]; <span class="comment">// 点2</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> item : nums) &#123;</span><br><span class="line">            <span class="keyword">if</span> (item == <span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span> (++counts[item] &gt; <span class="number">1</span>) <span class="keyword">return</span> <span class="keyword">false</span>;<span class="comment">// 注意先++</span></span><br><span class="line">            </span><br><span class="line">            min = min &lt;= item ? min : item;</span><br><span class="line">            max = max &gt;= item ? max : item;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (max - min &lt; <span class="number">5</span>) <span class="keyword">return</span> <span class="keyword">true</span>; <span class="comment">// 点3</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">思路：</span><br><span class="line"><span class="number">1</span>. 记录min、max， 要组成顺子max - min &lt; <span class="number">5</span>；</span><br><span class="line">仔细体会这个条件，开始没想到，写法是 max - min == <span class="number">4</span>，这种条件漏盘 有 <span class="number">0</span> 补位情况；</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>. counts 用来统计 是否有重复，我们还可以用HashSet判断重复，但是这里 数字范围固定可以使用数组代替；</span><br><span class="line"></span><br><span class="line">讨论：</span><br><span class="line">点<span class="number">1</span> ：<span class="keyword">int</span> min = <span class="number">13</span>, max = <span class="number">1</span>;</span><br><span class="line">要仔细体会怎么取值，因为 <span class="number">0</span> 会直接被忽略。所以遍历 item 可以正确给 min、max 初始赋值；</span><br><span class="line">初始赋值正确，后面遍历就顺理成章；</span><br><span class="line"></span><br><span class="line">点<span class="number">2</span>：没想到，这是一个数值范围确定，需要统计次数的 常用方法；</span><br><span class="line"></span><br><span class="line">点<span class="number">3</span>：&lt; <span class="number">5</span> 一定要注意</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/09/刷题-剑指/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -330,12 +493,24 @@
                 
               
 
-              <time title="Created: 2019-10-09 15:06:18 / Modified: 15:16:57" itemprop="dateCreated datePublished" datetime="2019-10-09T15:06:18+08:00">2019-10-09</time>
+              <time title="Created: 2019-10-09 15:06:18" itemprop="dateCreated datePublished" datetime="2019-10-09T15:06:18+08:00">2019-10-09</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-10-10 15:10:29" itemprop="dateModified" datetime="2019-10-10T15:10:29+08:00">2019-10-10</time>
               
             
           </span>
@@ -851,7 +1026,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
